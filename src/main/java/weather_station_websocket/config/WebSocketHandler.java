@@ -22,21 +22,21 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
         System.out.println("New Text Message Received");
         System.out.println(message);
-            for (WebSocketSession thisSession : sessionList) {
-                if (!session.getId().equals(thisSession.getId())) {
-                    thisSession.sendMessage(message);
-                }
+        for (WebSocketSession thisSession : sessionList) {
+            if (!session.getId().equals(thisSession.getId())) {
+                thisSession.sendMessage(message);
             }
         }
+    }
 
     @Override
     protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws IOException {
         System.out.println("New Binary Message Received");
         session.sendMessage(message);
-            for (WebSocketSession thisSession : sessionList) {
-                if (!session.getId().equals(thisSession.getId())) {
-                    thisSession.sendMessage(message);
-                }
+        for (WebSocketSession thisSession : sessionList) {
+            if (!session.getId().equals(thisSession.getId())) {
+                thisSession.sendMessage(message);
             }
         }
     }
+}
